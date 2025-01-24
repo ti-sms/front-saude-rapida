@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { PrimeReactProvider } from "primereact/api";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../../app/globals.css";
 import "primereact/resources/themes/saga-blue/theme.css";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
 import 'primeicons/primeicons.css';
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 
 
@@ -29,7 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-100"> 
-        {children}
+        <PrimeReactProvider>
+          <Header/>
+          <div className="flex">
+            <Sidebar />
+            {children}
+          </div>
+        </PrimeReactProvider>
       </body>
     </html>
   );
