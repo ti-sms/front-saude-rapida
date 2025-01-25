@@ -61,13 +61,13 @@ export function LoginForm() {
             type="button"
             icon={showPassword ? "pi pi-eye-slash" : "pi pi-eye"} 
             onClick={() => setShowPassword(!showPassword)}
-            className="p-button-text"
+            className="p-button-text  text-amber-500"
           />
         </div>
         {getFormErrorMessage("password")}
       </div>
 
-      <Button type="submit" label="Entrar" className="p-button-success" />
+      <Button type="submit" label="Entrar" className="text-white " severity="warning"  />
     </form>
   );
 }
