@@ -34,7 +34,7 @@ export default function Veihicles() {
         <Filter search={searchInput} setSearch={setSearchInput} />
         <div
           id="content"
-          className="bg-white h-[calc(77vh-4px)] rounded-lg p-3"
+          className="bg-white h-[calc(100%-110px)] rounded-lg p-3"
         >
           <div className="flex justify-center ">
             <h1 className="text-4xl font-bold">Veículos</h1>
