@@ -1,5 +1,7 @@
 "use client";
 import Filter from "@/app/components/Filter";
+import { LoginForm } from "@/app/components/forms/LoginForm";
+import FormModal from "@/app/components/modals/FormModal";
 import { VehicleSchema } from "@/app/lib/validations/vehicleSchema";
 import { actionsTemplate } from "@/app/templates/actionTemplates";
 import { Button } from "primereact/button";
@@ -10,6 +12,7 @@ import { useEffect, useState } from "react";
 export default function Veihicles() {
   const [searchInput, setSearchInput] = useState<string>("");
   const [veihicles, setVeihicles] = useState<VehicleSchema[]>([]);
+  const [resgisterVisible, setResgisterVisible] = useState(false);
 
   const columns = [
     { field: "brand", header: "Marca" },
@@ -46,6 +49,7 @@ export default function Veihicles() {
               iconPos="right"
               className="text-white font-bold shadow-md "
               severity="warning"
+              onClick={() => setResgisterVisible(true)}
             />
           </div>
           <div className="mt-2 shadow-lg">
@@ -62,6 +66,12 @@ export default function Veihicles() {
           </div>
         </div>
       </div>
+      <FormModal
+        form={<LoginForm />}
+        setVisible={setResgisterVisible}
+        title="Cadastrar novo veiculo"
+        visible={resgisterVisible}
+      />
     </>
   );
 }
