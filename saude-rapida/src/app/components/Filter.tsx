@@ -12,8 +12,13 @@ export default function Filter({ search, setSearch }: FilterProps) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="rounded-lg"
+        placeholder="Digite aqui"
       />
-      <Button icon="pi pi-search" severity="warning" className="rounded-lg text-white"/>
+      <Button
+        icon="pi pi-search"
+        severity="warning"
+        className="rounded-lg text-white"
+      />
     </div>
   );
 }

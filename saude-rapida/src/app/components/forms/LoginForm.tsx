@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { classNames } from "primereact/utils";
-import { loginSchema } from "@/app/lib/validations/loginSchema";
+import { LoginSchema } from "@/app/lib/validations/loginSchema";
 import { useForm } from "react-hook-form";
 
 export function LoginForm() {
@@ -13,15 +13,15 @@ export function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<loginSchema>({
+  } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: loginSchema) => {
+  const onSubmit = (data: LoginSchema) => {
     console.log("Login Data:", data);
   };
 
-  const getFormErrorMessage = (name: keyof loginSchema) =>
+  const getFormErrorMessage = (name: keyof LoginSchema) =>
     errors[name] ? (
       <small className="p-error">{errors[name]?.message}</small>
     ) : null;

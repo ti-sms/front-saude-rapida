@@ -31,7 +31,7 @@ export default function Sidebar() {
                     </li>
                     <li>
                         <div className="hover:bg-amber-700 h-14 rounded-lg m-2 flex items-center p-2 bg-black bg-opacity-50 ">
-                            <Link href="/" className="flex items-center justify-center space-x-2">
+                            <Link href="/content/vehicles" className="flex items-center justify-center space-x-2">
                                 <i className="pi pi-car"></i>
                                 <p className="">Veículos</p>
                             </Link>

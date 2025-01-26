@@ -28,8 +28,8 @@ export default function Header() {
                         <p className="">{user.name}</p>
                     </div>
                     <Dropdown options={user.userPermissions} value={user.userPermissions[0]} className="w-50"/>
-                    <Button icon="pi pi-cog" className="" />
-                    <Button icon="pi pi-sign-out" severity="danger" />
+                    <Button icon="pi pi-cog" severity="warning"  className="text-white shadow-md"/>
+                    <Button icon="pi pi-sign-out" severity="warning"  className="text-white shadow-md"/>
                 </div>
             </div>
         </>
