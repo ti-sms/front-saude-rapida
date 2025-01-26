@@ -12,11 +12,11 @@ export default function Header() {
 
     return (
         <>
-            <div className="w-screen h-24 bg-amber-500 flex items-center">
+            <div className="w-screen h-24 bg-amber-500 flex items-center shadow-2xl">
                 <div className="mt-10 ml-2 p-3">
                     <Image
                         aria-hidden
-                        src="/logo_branca.png"
+                        src="/images/logo_branca.png"
                         alt="Saúde Rápida"
                         width={180}
                         height={120}
