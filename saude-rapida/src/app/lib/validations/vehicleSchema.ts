@@ -5,7 +5,10 @@ export const vehicleSchema = z.object({
   brand: z.string(),
   model: z.string(),
   plate: z.string({
-    required_error: "Placa e obrogatória",
+    message: "Placa é obrogatória",
+  }),
+  status: z.boolean({
+    message: "Status é obrogatório",
   }),
 });
 

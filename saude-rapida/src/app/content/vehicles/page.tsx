@@ -1,6 +1,7 @@
 "use client";
 import Filter from "@/app/components/Filter";
 import { LoginForm } from "@/app/components/forms/LoginForm";
+import VehiclesForm from "@/app/components/forms/VehiclesForm";
 import FormModal from "@/app/components/modals/FormModal";
 import { VehicleSchema } from "@/app/lib/validations/vehicleSchema";
 import { actionsTemplate } from "@/app/templates/actionTemplates";
@@ -14,10 +15,13 @@ export default function Veihicles() {
   const [veihicles, setVeihicles] = useState<VehicleSchema[]>([]);
   const [resgisterVisible, setResgisterVisible] = useState(false);
 
+ 
+
   const columns = [
     { field: "brand", header: "Marca" },
     { field: "model", header: "Modelo" },
     { field: "plate", header: "Placa" },
+    { field: "status", header: "Status" },
   ];
 
   useEffect(() => {
@@ -26,6 +30,7 @@ export default function Veihicles() {
         brand: "Fiat",
         model: "Toro",
         plate: "pnp8769",
+        status: true,
       },
     ]);
   }, []);
@@ -54,12 +59,30 @@ export default function Veihicles() {
           </div>
           <div className="mt-2 shadow-lg">
             <DataTable value={veihicles} tableStyle={{ minWidth: "50rem" }}>
-              {columns.map((col, i) => (
-                <Column key={col.field} field={col.field} header={col.header} />
-              ))}
+              {columns.map((col) => {
+                if (col.field === "status") {
+                  return (
+                    <Column
+                      key={col.field}
+                      field={col.field}
+                      header={col.header}
+                      body={(rowData) =>
+                        rowData[col.field] ? "Ativo" : "Inativo"
+                      }
+                    />
+                  );
+                }
+                return (
+                  <Column
+                    key={col.field}
+                    field={col.field}
+                    header={col.header}
+                  />
+                );
+              })}
               <Column
                 body={actionsTemplate}
-                className="actions-column "
+                className="actions-column"
                 align={"right"}
               ></Column>
             </DataTable>
@@ -67,7 +90,7 @@ export default function Veihicles() {
         </div>
       </div>
       <FormModal
-        form={<LoginForm />}
+        form={<VehiclesForm />}
         setVisible={setResgisterVisible}
         title="Cadastrar novo veiculo"
         visible={resgisterVisible}
