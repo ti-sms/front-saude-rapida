@@ -13,7 +13,8 @@ import { useEffect, useState } from "react";
 export default function Veihicles() {
   const [searchInput, setSearchInput] = useState<string>("");
   const [veihicles, setVeihicles] = useState<VehicleSchema[]>([]);
-  const [resgisterVisible, setResgisterVisible] = useState(false);
+  const [resgisterVisible, setResgisterVisible] = useState(false)
+  ;
 
  
 
