@@ -1,5 +1,7 @@
 "use client";
 import Filter from "@/app/components/Filter";
+import DestinationsForm from "@/app/components/forms/DestinationsForm";
+import FormModal from "@/app/components/modals/FormModal";
 import { DestinationSchema } from "@/app/lib/validations/destinationSchema";
 import { actionsTemplate } from "@/app/templates/actionTemplates";
 import { Button } from "primereact/button";
@@ -69,6 +71,12 @@ export default function Destinations() {
           </div>
         </div>
       </div>
+      <FormModal
+        form={<DestinationsForm />}
+        visible={resgisterVisible}
+        setVisible={setResgisterVisible}
+        title="Novo Destino"
+      />
     </>
   );
 }
