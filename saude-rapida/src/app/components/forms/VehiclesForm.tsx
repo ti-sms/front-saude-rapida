@@ -1,3 +1,4 @@
+import { useToast } from "@/app/lib/hooks/useToast";
 import {
   VehicleSchema,
   vehicleSchema,
@@ -20,6 +21,8 @@ export default function VehiclesForm() {
     resolver: zodResolver(vehicleSchema),
   });
 
+  const { toastRef, showToast } = useToast();
+
   const status = useWatch({
     control,
     name: "status",
@@ -27,6 +30,7 @@ export default function VehiclesForm() {
 
   const onSubmit = (data: VehicleSchema) => {
     console.log("Form Data:", data);
+    showToast({ severity: 'success', summary: 'Success', detail: 'This is a toast message!', life: 3000 });
   };
 
   const getFormErrorMessage = (name: keyof VehicleSchema) =>
