@@ -1,12 +1,13 @@
-import { useToast } from "@/app/lib/hooks/useToast";
 import { DestinationSchema } from "@/app/lib/validations/destinationSchema";
 import { vehicleSchema } from "@/app/lib/validations/vehicleSchema";
+import cepService from "@/app/services/cepService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "primereact/button";
 import { Fieldset } from "primereact/fieldset";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
-import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useForm, useWatch } from "react-hook-form";
 
 export default function VehiclesForm() {
   const {
@@ -19,22 +20,33 @@ export default function VehiclesForm() {
     resolver: zodResolver(vehicleSchema),
   });
 
-  const { toastRef, showToast } = useToast();
-
   const onSubmit = (data: DestinationSchema) => {
     console.log("Form Data:", data);
-    showToast({
-      severity: "success",
-      summary: "Success",
-      detail: "This is a toast message!",
-      life: 3000,
-    });
   };
 
   const getFormErrorMessage = (name: keyof DestinationSchema) =>
     errors[name] ? (
       <small className="p-error">{errors[name]?.message}</small>
     ) : null;
+
+  const cep: any = useWatch({
+    control,
+    name: "addressSchema.cep",
+  });
+
+  useEffect(() => {
+    setValue("addressSchema.cep", "");
+  }, []);
+
+  async function handleCepRequest() {
+    try {
+      const address = await cepService.fetchAddress(cep);
+      alert("Deu bom");
+      console.log(address);
+    } catch (error) {
+      alert("Deu ruim");
+    }
+  }
 
   return (
     <>
@@ -94,6 +106,7 @@ export default function VehiclesForm() {
                 )}
                 placeholder="Insira o CEP"
                 maxLength={8}
+                onBlur={handleCepRequest}
               />
               {getFormErrorMessage("addressSchema")}
             </div>
