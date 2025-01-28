@@ -22,7 +22,7 @@ export default function Destinations() {
         addressSchema: {
           number: "123",
           street: "Rua das flores",
-          neighborhood: "Centro",
+          district: "Centro",
           city: "Foz do Iguaçu",
           state: "PR",
           cep: "85851-230",
@@ -58,7 +58,7 @@ export default function Destinations() {
               <Column
                 header="Endereço"
                 body={(rowData) =>
-                  `${rowData.addressSchema.street}, ${rowData.addressSchema.number} - ${rowData.addressSchema.neighborhood}`
+                  `${rowData.addressSchema.street}, ${rowData.addressSchema.number} - ${rowData.addressSchema.district}`
                 }
               />
               <Column field="description" header="Descrição" />

@@ -39,7 +39,7 @@ export default function VehiclesForm() {
     try {
       const address = await cepService.fetchAddress(cep);
       setValue("addressSchema.city", address.localidade);
-      setValue("addressSchema.neighborhood", address.bairro);
+      setValue("addressSchema.district", address.bairro);
       setValue("addressSchema.state", address.uf);
       setValue("addressSchema.street", address.logradouro);
     } catch (error) {
@@ -128,7 +128,7 @@ export default function VehiclesForm() {
                 />
                 {getFormErrorMessage("addressSchema")}
               </div>
-              <div className="field w-1/3 w-1/3">
+              <div className="field w-1/3">
                 <label
                   htmlFor="addressSchema.cep"
                   className="block text-lg font-medium"
@@ -157,9 +157,9 @@ export default function VehiclesForm() {
                 </label>
                 <InputText
                   id="addressSchema.neiborhood"
-                  {...register("addressSchema.neighborhood")}
+                  {...register("addressSchema.district")}
                   className={classNames(
-                    { "p-invalid": errors.addressSchema?.neighborhood },
+                    { "p-invalid": errors.addressSchema?.district },
                     "w-full rounded-lg"
                   )}
                   placeholder="Insira o nome do Bairro"
