@@ -22,6 +22,7 @@ export default function VehiclesForm() {
 
   const onSubmit = (data: DestinationSchema) => {
     console.log("Form Data:", data);
+    alert("Cadastrou")
   };
 
   const getFormErrorMessage = (name: keyof DestinationSchema) =>
@@ -34,17 +35,15 @@ export default function VehiclesForm() {
     name: "addressSchema.cep",
   });
 
-  useEffect(() => {
-    setValue("addressSchema.cep", "");
-  }, []);
-
   async function handleCepRequest() {
     try {
       const address = await cepService.fetchAddress(cep);
-      alert("Deu bom");
-      console.log(address);
+      setValue("addressSchema.city", address.localidade);
+      setValue("addressSchema.neighborhood", address.bairro);
+      setValue("addressSchema.state", address.uf);
+      setValue("addressSchema.street", address.logradouro);
     } catch (error) {
-      alert("Deu ruim");
+      return;
     }
   }
 
@@ -89,26 +88,114 @@ export default function VehiclesForm() {
           </div>
         </Fieldset>
         <Fieldset legend="Endereço" className="w-full">
-          <div className="flex space-x-2">
-            <div className="field">
-              <label
-                htmlFor="addressSchema.cep"
-                className="block text-lg font-medium"
-              >
-                CEP
-              </label>
-              <InputText
-                id="addressSchema.cep"
-                {...register("addressSchema.cep")}
-                className={classNames(
-                  { "p-invalid": errors.addressSchema?.cep },
-                  "w-full rounded-lg"
-                )}
-                placeholder="Insira o CEP"
-                maxLength={8}
-                onBlur={handleCepRequest}
-              />
-              {getFormErrorMessage("addressSchema")}
+          <div className="w-full">
+            <div className="flex space-x-2 ">
+              <div className="field w-1/3">
+                <label
+                  htmlFor="addressSchema.cep"
+                  className="block text-lg font-medium"
+                >
+                  CEP
+                </label>
+                <InputText
+                  id="addressSchema.cep"
+                  {...register("addressSchema.cep")}
+                  className={classNames(
+                    { "p-invalid": errors.addressSchema?.cep },
+                    "w-full rounded-lg"
+                  )}
+                  placeholder="Insira o CEP"
+                  maxLength={8}
+                  onBlur={handleCepRequest}
+                />
+                {getFormErrorMessage("addressSchema")}
+              </div>
+              <div className="field w-1/3">
+                <label
+                  htmlFor="addressSchema.cep"
+                  className="block text-lg font-medium"
+                >
+                  Estado
+                </label>
+                <InputText
+                  id="addressSchema.state"
+                  {...register("addressSchema.state")}
+                  className={classNames(
+                    { "p-invalid": errors.addressSchema?.state },
+                    "w-full rounded-lg"
+                  )}
+                  disabled
+                />
+                {getFormErrorMessage("addressSchema")}
+              </div>
+              <div className="field w-1/3 w-1/3">
+                <label
+                  htmlFor="addressSchema.cep"
+                  className="block text-lg font-medium"
+                >
+                  Cidade
+                </label>
+                <InputText
+                  id="addressSchema.city"
+                  {...register("addressSchema.city")}
+                  className={classNames(
+                    { "p-invalid": errors.addressSchema?.city },
+                    "w-full rounded-lg"
+                  )}
+                  disabled
+                />
+                {getFormErrorMessage("addressSchema")}
+              </div>
+            </div>
+            <div className="flex space-x-2">
+              <div className="field w-1/3">
+                <label
+                  htmlFor="neiborhood"
+                  className="block text-lg font-medium"
+                >
+                  Bairro
+                </label>
+                <InputText
+                  id="addressSchema.neiborhood"
+                  {...register("addressSchema.neighborhood")}
+                  className={classNames(
+                    { "p-invalid": errors.addressSchema?.neighborhood },
+                    "w-full rounded-lg"
+                  )}
+                  placeholder="Insira o nome do Bairro"
+                />
+                {getFormErrorMessage("addressSchema")}
+              </div>
+              <div className="field w-1/3">
+                <label htmlFor="street" className="block text-lg font-medium">
+                  Rua
+                </label>
+                <InputText
+                  id="addressSchema.street"
+                  {...register("addressSchema.street")}
+                  className={classNames(
+                    { "p-invalid": errors.addressSchema?.street },
+                    "w-full rounded-lg"
+                  )}
+                  placeholder="Insira o nome da rua"
+                />
+                {getFormErrorMessage("addressSchema")}
+              </div>
+              <div className="field w-1/3">
+                <label htmlFor="number" className="block text-lg font-medium">
+                  Número
+                </label>
+                <InputText
+                  id="addressSchema.number"
+                  {...register("addressSchema.number")}
+                  className={classNames(
+                    { "p-invalid": errors.addressSchema?.number },
+                    "w-full rounded-lg"
+                  )}
+                  placeholder="Insira o número"
+                />
+                {getFormErrorMessage("addressSchema")}
+              </div>
             </div>
           </div>
         </Fieldset>
