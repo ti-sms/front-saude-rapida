@@ -22,7 +22,7 @@ export default function Destinations() {
         addressSchema: {
           number: "123",
           street: "Rua das flores",
-          district: "Centro",
+          district: "Centr  o",
           city: "Foz do Iguaçu",
           state: "PR",
           cep: "85851-230",
@@ -33,7 +33,7 @@ export default function Destinations() {
 
   return (
     <>
-      <div className="w-full p-2 mr-2 space-y-2">
+      <div className="w-full p-2 mr-2 space-y-2"> 
         <Filter search={searchInput} setSearch={setSearchInput} />
         <div
           id="content"
@@ -59,7 +59,7 @@ export default function Destinations() {
                 header="Endereço"
                 body={(rowData) =>
                   `${rowData.addressSchema.street}, ${rowData.addressSchema.number} - ${rowData.addressSchema.district}`
-                }
+                  }
               />
               <Column field="description" header="Descrição" />
               <Column
