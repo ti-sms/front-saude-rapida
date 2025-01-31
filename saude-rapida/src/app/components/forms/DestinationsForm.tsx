@@ -11,7 +11,7 @@ import { classNames } from "primereact/utils";
 import { useForm, useWatch } from "react-hook-form";
 import AddressForm from "./AddressForm";
 
-export default function VehiclesForm() {
+export default function DestinationsForm() {
   const {
     register,
     control,
